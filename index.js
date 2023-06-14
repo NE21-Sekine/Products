@@ -62,8 +62,23 @@ app.get('/request', (req, res) => {
 app.get('/add', (req, res) => {
     res.contentType('json');
     res.header('Access-Control-Allow-Origin', '*');
-    foods.add(req.query.name, Number(req.query.price))
-    res.send({result:foods.length, data:foods});
+    let result = { err: "", result: 0, data: [] };
+    if (req.query.name != null){
+        foods.products.forEach(e => {
+            if (e.name == req.query.name) {
+                result.result++;
+                result.data.push(e);
+            }
+        });
+        if (result.result == 0){
+            foods.add(req.query.name, Number(req.query.price))
+        }else{
+            result.err = "This name is exist"
+        }
+    }else {
+        result.err = "Add name not specified"
+    }
+    res.send(result);
 });
 
 app.listen(process.env.PORT || PORT);
