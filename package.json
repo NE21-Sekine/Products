@@ -1,16 +1,14 @@
 {
-    "name": "myfirstdb",
+    "name": "products",
     "version": "1.0.0",
-    "description": "Node.js on Docker + Express + EJS + Sequelize + PG",
-    "author": "Shu Iida",
+    "description": "Node.js on Docker with Express and EJS",
+    "author": "Hikari Sekine",
     "main": "index.js",
     "scripts": {
       "start": "node index.js"
     },
     "dependencies": {
       "express": "^4.17.3",
-      "ejs": "^3.1.8",
-      "sequelize": "^6.29.3",
-      "pg": "^8.10.0"
+      "ejs": "^3.1.8"
     }
   }
