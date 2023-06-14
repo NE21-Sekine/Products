@@ -51,6 +51,11 @@ app.get('/request', (req, res) => {
         }
         res.send(result);
     }
+    else if (req.query.cmd == "all"){
+        res.contentType('json');
+        res.header('Access-Control-Allow-Origin', '*');
+        res.send({result:foods.length, data:foods});
+    }
 });
 
 app.listen(process.env.PORT || PORT);
