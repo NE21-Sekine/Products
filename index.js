@@ -47,8 +47,9 @@ app.get('/request', (req, res) => {
                 }
             });
         }else {
-            result.err = "seach name not specified"
+            result.err = "Seach name not specified"
         }
+        if (result.result == 0) result.err = "Item with that name does not exist"
         res.send(result);
     }
     else if (req.query.cmd == "all"){
@@ -56,6 +57,13 @@ app.get('/request', (req, res) => {
         res.header('Access-Control-Allow-Origin', '*');
         res.send({result:foods.length, data:foods});
     }
+});
+
+app.get('/add', (req, res) => {
+    res.contentType('json');
+    res.header('Access-Control-Allow-Origin', '*');
+    foods.add(req.query.name, Number(req.query.price))
+    res.send({result:foods.length, data:foods});
 });
 
 app.listen(process.env.PORT || PORT);
